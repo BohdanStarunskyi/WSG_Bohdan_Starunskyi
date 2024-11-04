@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="200" height="100" style="border:1px solid #c3c3c3;">
+    Your browser does not support the canvas element.
+</canvas>
+
+<script>
+    const canvas = document.getElementById("myCanvas");
+    const ctx = canvas.getContext("2d");
+
+    function drawAxis(startX, startY, endX, endY) {
+        ctx.beginPath();
+        ctx.moveTo(startX, startY);
+        ctx.lineTo(endX, endY);
+        ctx.stroke();
+    }
+
+    function drawArrow(x, y, dx, dy) {
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + dx, y + dy);
+        ctx.lineTo(x + dx - 6, y + dy + 3);
+        ctx.lineTo(x + dx - 6, y + dy - 3);
+        ctx.closePath();
+        ctx.fillStyle = "black";
+        ctx.fill();
+    }
+
+    function drawPoint(x, y, label) {
+        ctx.beginPath();
+        ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.fillText(label, x + 5, y - 2);
+    }
+
+    // Draw X and Y axes
+    // X-axis
+    drawAxis(0, 50, 200, 50)
+    drawAxis(100, 0, 100, 100); 
+
+    // Draw X and Y axis arrows
+     // X-axis arrow
+    drawArrow(200, 50, -5, 0); 
+    // Y-axis arrow
+    drawArrow(100, 0, 0, 5);     
+    ctx.font = "10px Arial";
+    ctx.fillText("x", 185, 45);
+    ctx.fillText("y", 105, 15);
+
+    drawPoint(145, 42.5, "V2");
+    drawPoint(175, 37.5, "V3");
+
+</script>
+
+</body>
+</html>
